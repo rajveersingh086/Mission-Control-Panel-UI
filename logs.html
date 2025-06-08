@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - System Logs</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">MISSION CONTROL</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">Dashboard</a>
+                <a href="create.html" class="nav-item">Create Mission</a>
+                <a href="map.html" class="nav-item">Map View</a>
+                <a href="logs.html" class="nav-item active">System Logs</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h2>System Logs</h2>
+                <button class="mode-toggle" id="mode-toggle">Dark Mode</button>
+            </div>
+            
+            <div class="dashboard">
+                <div class="tabs">
+                    <div class="tab active" data-log-type="all">All Logs</div>
+                    <div class="tab" data-log-type="critical">Critical</div>
+                    <div class="tab" data-log-type="warning">Warnings</div>
+                    <div class="tab" data-log-type="info">Info</div>
+                </div>
+                <div id="system-logs">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/missions.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavItem('logs.html');
+
+            document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
+
+            renderSystemLogs();
+
+            document.querySelectorAll('.tab[data-log-type]').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const logType = this.getAttribute('data-log-type');
+                    filterLogs(logType);
+                    
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control Panel UI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">MISSION CONTROL</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">Dashboard</a>
+                <a href="create.html" class="nav-item active">Create Mission</a>
+                <a href="map.html" class="nav-item">Map View</a>
+                <a href="logs.html" class="nav-item">System Logs</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h2>Create New Mission</h2>
+                <button class="mode-toggle" id="mode-toggle">Dark Mode</button>
+            </div>
+            
+            <div class="dashboard">
+                <form id="mission-form">
+                    <div class="form-group">
+                        <label for="mission-name">Mission Name</label>
+                        <input type="text" id="mission-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mission-description">Description</label>
+                        <input type="text" id="mission-description">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mission-priority">Priority</label>
+                        <select id="mission-priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Coordinates</label>
+                        <div class="coordinates-input">
+                            <input type="text" id="mission-lat" placeholder="Latitude" required>
+                            <input type="text" id="mission-lng" placeholder="Longitude" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit">Launch Mission</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/missions.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavItem('create.html');
+            document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
+        
+            document.getElementById('mission-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('mission-name').value;
+                const description = document.getElementById('mission-description').value;
+                const priority = document.getElementById('mission-priority').value;
+                const lat = document.getElementById('mission-lat').value;
+                const lng = document.getElementById('mission-lng').value;
+                
+                createMission(name, description, priority, lat, lng);
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>

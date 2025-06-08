@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control-Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">MISSION CONTROL</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item active">Dashboard</a>
+                <a href="create.html" class="nav-item">Create Mission</a>
+                <a href="map.html" class="nav-item">Map View</a>
+                <a href="logs.html" class="nav-item">System Logs</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h2>Mission Dashboard</h2>
+                <button class="mode-toggle" id="mode-toggle">Dark Mode</button>
+            </div>
+            <div class="dashboard">
+                <h3>Active Missions</h3>
+                <div class="mission-grid" id="mission-grid">
+                </div>
+                <div class="map-container">
+                    <div class="map-placeholder"></div>
+                    <span>Mission Tracking Map (Simulation)</span>
+                </div>
+                <div class="logs-container">
+                    <h3>Recent Activity</h3>
+                    <div id="recent-logs">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/missions.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMissions();
+            renderRecentLogs();
+            setActiveNavItem('index.html');
+            document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
+        });
+    </script>
+</body>
+</html>

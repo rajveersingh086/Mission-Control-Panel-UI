@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Map View</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">MISSION CONTROL</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">Dashboard</a>
+                <a href="create.html" class="nav-item">Create Mission</a>
+                <a href="map.html" class="nav-item active">Map View</a>
+                <a href="logs.html" class="nav-item">System Logs</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h2>Mission Tracking Map</h2>
+                <button class="mode-toggle" id="mode-toggle">Dark Mode</button>
+            </div>
+
+            <div class="dashboard">
+                <div class="map-container" style="height: 500px;">
+                    <div class="map-placeholder"></div>
+                    <span>Interactive Mission Map (Simulation)</span>
+                </div>
+                <div class="mission-details" style="margin-top: 20px;">
+                    <h4>Mission Coordinates</h4>
+                    <div id="mission-coordinates-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/missions.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavItem('map.html');
+
+            document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
+            renderMissionCoordinates();
+        });
+    </script>
+</body>
+</html>
